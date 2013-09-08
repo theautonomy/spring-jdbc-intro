@@ -14,6 +14,8 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 import org.wei.spring.jdbc.domain.User;
 
+
+
 @Repository
 @Qualifier("userDaoUsingNP")
 public class UserNamedParameterJdbcTemplateDao implements IUserDao {
