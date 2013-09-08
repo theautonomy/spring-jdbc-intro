@@ -1,16 +1,20 @@
 package org.wei.spring.jdbc;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.List;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
-
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.wei.spring.jdbc.domain.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -22,6 +26,9 @@ public class UserJdbcTemplateDaoTest {
 	@Qualifier("userDao")
 	private IUserDao userDAO;
 	//private UserSpringJDBCDAO userDAO;
+	
+	@Autowired
+	private PlatformTransactionManager txManager;
 
 	@Test
 	public void testSelectCount() {
@@ -49,5 +56,27 @@ public class UserJdbcTemplateDaoTest {
 		
 		User user = userDAO.selectUserByPin(102);
 		assertEquals("New User",  user.getName());
+	}
+	
+	@Test
+	public void testUpdateUsers() {
+		//TransactionTemplate tt = new TransactionTemplate(txManager);
+		
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		// explicitly setting the transaction name is something that can only be done programmatically
+		def.setName("name");
+		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+		
+		TransactionStatus status = txManager.getTransaction(def);
+		try {
+			userDAO.updateUserName(102,  "New User 2");
+			userDAO.updateUserName(101,  "New User 1");
+			txManager.commit(status);
+		} catch (Exception e) {
+			txManager.rollback(status);
+		}
+		
+		User user = userDAO.selectUserByPin(102);
+		assertEquals("New User 2",  user.getName());
 	}
 }

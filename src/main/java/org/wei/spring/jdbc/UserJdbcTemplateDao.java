@@ -24,7 +24,7 @@ public class UserJdbcTemplateDao implements IUserDao {
 	public UserJdbcTemplateDao() {
 
 	}
-	
+
 	public List<User> selectAllUsers() {
 		return jdbcTemplate.query("select * from USER", new UserMapper());
 	}
@@ -33,17 +33,15 @@ public class UserJdbcTemplateDao implements IUserDao {
 		return jdbcTemplate.queryForObject("select count(*) from USER",
 				Integer.class).intValue();
 	}
-	
+
 	public User selectUserByPin(int pin) {
-		return jdbcTemplate.queryForObject("select * from user where pin = ?", 
-				new UserMapper(), new Object[] {Integer.valueOf(pin)});
+		return jdbcTemplate.queryForObject("select * from user where pin = ?",
+				new UserMapper(), new Object[] { Integer.valueOf(pin) });
 	}
 
-	
-
 	public int updateUserName(int pin, String name) {
-		return jdbcTemplate.update("update user set name = ? where pin = ?", name, Integer.valueOf(pin));
-		
+		return jdbcTemplate.update("update user set name = ? where pin = ?",
+				name, Integer.valueOf(pin));
 	}
 
 }
