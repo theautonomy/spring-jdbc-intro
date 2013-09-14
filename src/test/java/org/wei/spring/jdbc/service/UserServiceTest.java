@@ -26,14 +26,11 @@ public class UserServiceTest {
 	private IUserService userService;
 	
 	@Test
-	public void testUpdateUsers() {
-		
-		
+	public void testUpdateUsers() {	
 		userService.updateUsers();
 		
 		User user = userDAO.selectUserByPin(102);
-		assertEquals("New User 2",  user.getName());
-		
+		assertEquals("New User 2",  user.getName());		
 	}
 	
 	@Test
