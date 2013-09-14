@@ -58,5 +58,6 @@ public class UserNamedParameterJdbcTemplateDaoUsingJavaConfigTest {
 		User user = userDAO.selectUserByPin(102);
 		assertEquals("New User",  user.getName());
 	}
+	
 }
 

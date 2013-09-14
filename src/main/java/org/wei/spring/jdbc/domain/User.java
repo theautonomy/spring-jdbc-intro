@@ -1,6 +1,13 @@
 package org.wei.spring.jdbc.domain;
 
 public class User {
+	
+	private String id;
+	private String name;
+	private String Address;
+	private String city;
+	private String state;
+	private int pin;
 
 	public String getId() {
 		return id;
@@ -38,11 +45,6 @@ public class User {
 	public void setPin(int pin) {
 		this.pin = pin;
 	}
-	private String id;
-	private String name;
-	private String Address;
-	private String city;
-	private String state;
-	private int pin;
+	
 
 }

@@ -78,4 +78,5 @@ public class UserJdbcTemplateDaoTest {
 		User user = userDAO.selectUserByPin(102);
 		assertEquals("New User 2",  user.getName());
 	}
+	
 }

@@ -40,8 +40,7 @@ public class AppConfiguration {
 	public PlatformTransactionManager transactionManager() {
 		DataSourceTransactionManager txManager = new DataSourceTransactionManager();
 		txManager.setDataSource(dataSource());
-		return txManager;
-		
+		return txManager;	
 	}
 	
 	@Bean(name="string")
