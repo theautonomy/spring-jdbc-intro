@@ -32,18 +32,20 @@ public class Main {
 
 	public static void main(String[] args) throws SQLException {
 		System.setProperty("spring.profiles.active", "dev");
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfiguration.class);
-		//context.getEnvironment().setActiveProfiles("dev");
-		
-
-//		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-//
-//		// System.setProperty("spring.profiles.active", "dev");
-//		context.getEnvironment().setActiveProfiles("dev");
-//
-//		context.scan("org.wei.spring");
-//		context.register(AppConfiguration.class);
-//		context.refresh();
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
+				AppConfiguration.class);
+		// context.getEnvironment().setActiveProfiles("dev");
+	
+		// Second option to load context. The key is to set the profile correctly
+		// AnnotationConfigApplicationContext context = new
+		// AnnotationConfigApplicationContext();
+		//
+		// System.setProperty("spring.profiles.active", "dev");  or
+		// context.getEnvironment().setActiveProfiles("dev");
+		//
+		// context.scan("org.wei.spring");
+		// context.register(AppConfiguration.class);
+		// context.refresh();
 
 		String test = context.getBean("string", String.class);
 		System.out.println("test=" + test);
@@ -54,11 +56,11 @@ public class Main {
 		Main thisMain = (Main) context.getBean("main");
 		thisMain.doSomething();
 
-		IUserDao userDao = (IUserDao)context.getBean("userDao");
+		IUserDao userDao = (IUserDao) context.getBean("userDao");
 		User user = userDao.selectUserByPin(102);
 		System.out.println("User Name=" + user.getName());
 
 		context.close();
 	}
-	
+
 }

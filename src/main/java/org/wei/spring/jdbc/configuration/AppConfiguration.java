@@ -15,9 +15,10 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-// see http://www.swiftmind.com/de/2011/06/22/spring-3-1-m2-testing-with-configuration-classes-and-profiles/
-
+// Reference: 
+// http://www.swiftmind.com/de/2011/06/22/spring-3-1-m2-testing-with-configuration-classes-and-profiles/
 // http://krams915.blogspot.com/2012/12/spring-and-thymeleaf-with-javaconfig_8540.html
+// http://www.javacodegeeks.com/2012/02/properties-with-spring.html
 
 @Configuration
 @EnableTransactionManagement
