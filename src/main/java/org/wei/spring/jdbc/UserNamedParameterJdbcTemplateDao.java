@@ -7,17 +7,13 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 import org.wei.spring.jdbc.domain.User;
 
-
-
-@Repository
-@Qualifier("userDaoUsingNP")
+@Repository("userDaoUsingNP")
 public class UserNamedParameterJdbcTemplateDao implements IUserDao {
 
 	NamedParameterJdbcTemplate jdbcTemplate;

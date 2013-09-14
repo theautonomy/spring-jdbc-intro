@@ -25,7 +25,6 @@ public class UserJdbcTemplateDaoTest {
 	@Autowired
 	@Qualifier("userDao")
 	private IUserDao userDAO;
-	//private UserSpringJDBCDAO userDAO;
 	
 	@Autowired
 	private PlatformTransactionManager txManager;
@@ -33,13 +32,13 @@ public class UserJdbcTemplateDaoTest {
 	@Test
 	public void testSelectCount() {
 		int count = userDAO.getCount();
-		System.out.println("count=" + count);
+		assertEquals(3,  count);
 	}
 
 	@Test
 	public void testSelectAllUsers() {
 		List<User> users = userDAO.selectAllUsers();
-		assertEquals(2, users.size());
+		assertEquals(3, users.size());
 		assertEquals(102, users.get(1).getPin());
 	}
 	
@@ -63,7 +62,7 @@ public class UserJdbcTemplateDaoTest {
 		//TransactionTemplate tt = new TransactionTemplate(txManager);
 		
 		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
-		// explicitly setting the transaction name is something that can only be done programmatically
+		// explicitly setting the transaction name is something that can only be done programatically
 		def.setName("name");
 		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
 		

@@ -10,13 +10,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.wei.spring.jdbc.domain.User;
 
-@Repository
-@Qualifier("userDao")
+@Repository("userDao")
 public class UserJdbcTemplateDao implements IUserDao {
 
 	private JdbcTemplate jdbcTemplate;
 
 	@Autowired
+	@Qualifier("dataSource")
 	public void setDataSource(DataSource dataSource) {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
@@ -26,7 +26,7 @@ public class UserJdbcTemplateDao implements IUserDao {
 	}
 
 	public List<User> selectAllUsers() {
-		return jdbcTemplate.query("select * from USER", new UserMapper());
+		return jdbcTemplate.query("select * from USER order by pin", new UserMapper());
 	}
 
 	public int getCount() {

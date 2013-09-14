@@ -21,18 +21,17 @@ public class UserNamedParameterJdbcTemplateDaoTest {
 	@Autowired
 	@Qualifier("userDaoUsingNP")
 	private IUserDao userDAO;
-	//private UserSpringJDBCDAO userDAO;
 
 	@Test
 	public void testSelectCount() {
 		int count = userDAO.getCount();
-		System.out.println("count=" + count);
+		assertEquals(3,  count);
 	}
 
 	@Test
 	public void testSelectAllUsers() {
 		List<User> users = userDAO.selectAllUsers();
-		assertEquals(2, users.size());
+		assertEquals(3, users.size());
 		assertEquals(102, users.get(1).getPin());
 	}
 	

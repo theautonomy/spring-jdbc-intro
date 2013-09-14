@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.wei.spring.jdbc.IUserDao;
 
-@Service
-@Qualifier("userService")
+@Service("userService")
+//@Qualifier("userService")
 public class UserService implements IUserService {
 	
 	@Autowired
