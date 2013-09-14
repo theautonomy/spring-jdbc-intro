@@ -10,8 +10,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
-import org.wei.spring.jdbc.IUserDao;
 import org.wei.spring.jdbc.configuration.AppConfiguration;
+import org.wei.spring.jdbc.dao.IUserDao;
 import org.wei.spring.jdbc.domain.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)

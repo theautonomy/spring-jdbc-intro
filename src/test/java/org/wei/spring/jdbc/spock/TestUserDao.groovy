@@ -10,7 +10,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.wei.spring.jdbc.IUserDao;
+
+import org.wei.spring.jdbc.dao.IUserDao
 import org.wei.spring.jdbc.domain.User;
 
 import spock.lang.Specification
@@ -25,19 +26,15 @@ class TestUserDao extends Specification  {
 
 	@Autowired
 	private PlatformTransactionManager txManager;
-
-	
 	
 	def "test select" () {
 		
 		setup:
 		
 		when:
-		def users = userDAO.selectAllUsers()
+			def users = userDAO.selectAllUsers()
 		
 		then:
-		users.size == 3
-		
-	
+			users.size == 3
 	}
 }

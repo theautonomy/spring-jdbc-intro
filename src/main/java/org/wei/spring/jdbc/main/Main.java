@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
-import org.wei.spring.jdbc.IUserDao;
 import org.wei.spring.jdbc.configuration.AppConfiguration;
+import org.wei.spring.jdbc.dao.IUserDao;
 import org.wei.spring.jdbc.domain.User;
 import org.wei.spring.jdbc.service.IUserService;
 

@@ -11,7 +11,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.wei.spring.jdbc.IUserDao;
+import org.wei.spring.jdbc.dao.IUserDao;
 import org.wei.spring.jdbc.configuration.AppConfiguration;
 import org.wei.spring.jdbc.domain.User;
 
@@ -37,8 +37,6 @@ class TestUserDaoUsingJavaConfig extends Specification  {
 	@Autowired
 	private PlatformTransactionManager txManager;
 
-	
-	
 	def "test select" () {		
 		setup:
 		
@@ -55,6 +53,6 @@ class TestUserDaoUsingJavaConfig extends Specification  {
 		
 		expect:
 		userDAO.selectAllUsers().size == 3
-
 	}
+	
 }

@@ -17,6 +17,7 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.wei.spring.jdbc.configuration.AppConfiguration;
+import org.wei.spring.jdbc.dao.IUserDao;
 import org.wei.spring.jdbc.domain.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
