@@ -25,6 +25,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 //@ComponentScan(basePackages={"org.wei.spring.jdbc","org.wei.spring.jdbc.service"})
 @ComponentScan(basePackages={"org.wei.spring"})
 @PropertySource("classpath:conf/db-setting.conf")
+//@Import("AnotherAppConfig.class")
+//@ImportResource("classpath:myconfig.xml")
 @Profile("dev")
 public class AppConfiguration {
 	

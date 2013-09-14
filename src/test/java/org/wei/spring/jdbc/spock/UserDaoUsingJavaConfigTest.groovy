@@ -28,7 +28,7 @@ import spock.lang.Specification
 //@ImportResource("classpath:myconfig.xml")
 //@PropertySource("classpath:setting.txt")
 @ActiveProfiles("dev")
-class TestUserDaoUsingJavaConfig extends Specification  {
+class UserDaoUsingJavaConfigTest extends Specification  {
 	
 	@Autowired
 	@Qualifier("userDao")

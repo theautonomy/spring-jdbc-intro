@@ -2,7 +2,7 @@ package org.wei.spring.jdbc.spock
 
 import spock.lang.*
 
-class Test1 extends Specification {
+class FirstSpockTest extends Specification {
 
 	def "maximum of two numbers"(int a, int b, int c) {
 		expect:
