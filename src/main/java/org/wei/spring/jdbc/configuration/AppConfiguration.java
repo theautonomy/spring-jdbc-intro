@@ -35,7 +35,7 @@ public class AppConfiguration {
 	public DataSource dataSource() {
 		return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.HSQL)
 				.addScript(environment.getProperty("schema"))
-				.addScript(environment.getProperty("db"))
+				.addScript(environment.getProperty("data"))
 				.build();			
 	}
 	

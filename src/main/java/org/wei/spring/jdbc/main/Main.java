@@ -32,8 +32,7 @@ public class Main {
 
 	public static void main(String[] args) throws SQLException {
 		System.setProperty("spring.profiles.active", "dev");
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
-				AppConfiguration.class);
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfiguration.class);
 		// context.getEnvironment().setActiveProfiles("dev");
 	
 		// Second option to load context. The key is to set the profile correctly
