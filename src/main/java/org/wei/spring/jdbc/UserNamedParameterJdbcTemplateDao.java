@@ -30,7 +30,7 @@ public class UserNamedParameterJdbcTemplateDao implements IUserDao {
 	}
 
 	public List<User> selectAllUsers() {
-		return jdbcTemplate.query("select * from USER", new UserMapper());
+		return jdbcTemplate.query("select * from USER order by pin", new UserMapper());
 	}
 
 	public User selectUserByPin(int pin) {
@@ -45,8 +45,7 @@ public class UserNamedParameterJdbcTemplateDao implements IUserDao {
 		/*
 		SqlParameterSource namedParameters = new MapSqlParameterSource("name", name).addValue("pin",  pin);
 		return jdbcTemplate.update("update user set name = :name where pin = :pin", namedParameters);
-		*/
-		
+		*/		
 		User user = new User();
 		user.setPin(102);
 		user.setName(name);
