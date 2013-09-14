@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
@@ -22,6 +23,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 //@ComponentScan(basePackages={"org.wei.spring.jdbc","org.wei.spring.jdbc.service"})
 @ComponentScan(basePackages={"org.wei.spring"})
+@PropertySource("classpath:conf/db-setting.conf")
 @Profile("dev")
 public class AppConfiguration {
 	
@@ -31,8 +33,8 @@ public class AppConfiguration {
 	@Bean(name="dataSource")
 	public DataSource dataSource() {
 		return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.HSQL)
-				.addScript("classpath:sql/hsqldb/schema.sql")
-				.addScript("classpath:sql/hsqldb/data.sql")
+				.addScript(environment.getProperty("schema"))
+				.addScript(environment.getProperty("db"))
 				.build();			
 	}
 	
