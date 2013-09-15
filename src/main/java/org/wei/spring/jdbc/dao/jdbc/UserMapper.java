@@ -1,4 +1,4 @@
-package org.wei.spring.jdbc.dao;
+package org.wei.spring.jdbc.dao.jdbc;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

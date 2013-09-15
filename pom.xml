@@ -84,7 +84,7 @@
 					</dependencies>
 				</plugin>
 
-				<!-- 
+				
 				<plugin>
 					<groupId>org.spockframework</groupId>
 					<artifactId>spock-maven</artifactId>
@@ -97,7 +97,7 @@
 						</execution>
 					</executions>
 				</plugin>
-				-->
+				
 			</plugins>
 		</pluginManagement>
 	</build>

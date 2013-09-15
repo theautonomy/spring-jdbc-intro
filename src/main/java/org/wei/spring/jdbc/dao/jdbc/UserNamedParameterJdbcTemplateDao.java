@@ -1,4 +1,4 @@
-package org.wei.spring.jdbc.dao;
+package org.wei.spring.jdbc.dao.jdbc;
 
 import java.util.Collections;
 import java.util.List;
@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
+import org.wei.spring.jdbc.dao.IUserDao;
 import org.wei.spring.jdbc.domain.User;
 
 @Repository("userDaoUsingNP")
