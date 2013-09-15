@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.wei.spring.jdbc.dao.IUserDao;
 
 @Service("userService")
-// @Qualifier("userService")
 public class UserService implements IUserService {
 
 	@Autowired

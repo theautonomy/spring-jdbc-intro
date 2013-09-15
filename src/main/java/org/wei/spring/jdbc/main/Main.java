@@ -13,7 +13,6 @@ import org.wei.spring.jdbc.dao.IUserDao;
 import org.wei.spring.jdbc.domain.User;
 import org.wei.spring.jdbc.service.IUserService;
 
-// @ActiveProfiles("dev") - this doesn't work in non unit test class
 @Component
 public class Main {
 
