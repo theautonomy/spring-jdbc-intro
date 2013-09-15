@@ -1,4 +1,4 @@
-package org.wei.spring.jdbc;
+package org.wei.spring.jdbc.dao;
 
 import static org.junit.Assert.assertEquals;
 

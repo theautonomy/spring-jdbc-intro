@@ -1,6 +1,6 @@
-package org.wei.spring.jdbc;
+package org.wei.spring.jdbc.dao;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.List;
 
@@ -12,10 +12,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionDefinition;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.wei.spring.jdbc.configuration.AppConfiguration;
 import org.wei.spring.jdbc.dao.IUserDao;
 import org.wei.spring.jdbc.domain.User;
@@ -29,18 +25,12 @@ import org.wei.spring.jdbc.domain.User;
 	        JndiDataConfig.class */
 	        
 	    })
-//@Import("AnotherAppConfig.class")
-//@ImportResource("classpath:myconfig.xml")
-//@PropertySource("classpath:setting.txt")
 @ActiveProfiles("dev")
-public class UserJdbcTemplateDaoUsingJavaConfigTest {
-	
+public class UserNamedParameterJdbcTemplateDaoUsingJavaConfigTest {
+
 	@Autowired
-	@Qualifier("userDao")
+	@Qualifier("userDaoUsingNP")
 	private IUserDao userDAO;
-	
-	@Autowired
-	private PlatformTransactionManager txManager;
 
 	@Test
 	public void testSelectCount() {
@@ -70,26 +60,5 @@ public class UserJdbcTemplateDaoUsingJavaConfigTest {
 		assertEquals("New User",  user.getName());
 	}
 	
-	@Test
-	public void testUpdateUsers() {
-		//TransactionTemplate tt = new TransactionTemplate(txManager);
-		
-		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
-		// explicitly setting the transaction name is something that can only be done programmatically
-		def.setName("name");
-		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
-		
-		TransactionStatus status = txManager.getTransaction(def);
-		try {
-			userDAO.updateUserName(102,  "New User 2");
-			userDAO.updateUserName(101,  "New User 1");
-			txManager.commit(status);
-		} catch (Exception e) {
-			txManager.rollback(status);
-		}
-		
-		User user = userDAO.selectUserByPin(102);
-		assertEquals("New User 2",  user.getName());
-	}
-	
 }
+

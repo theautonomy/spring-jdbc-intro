@@ -28,7 +28,7 @@ import spock.lang.Specification
 //@ImportResource("classpath:myconfig.xml")
 //@PropertySource("classpath:setting.txt")
 @ActiveProfiles("dev")
-class UserDaoUsingJavaConfigTest extends Specification  {
+class UserDaoUsingJavaConfigSpec extends Specification  {
 	
 	@Autowired
 	@Qualifier("userDao")
@@ -41,10 +41,10 @@ class UserDaoUsingJavaConfigTest extends Specification  {
 		setup:
 		
 		when:
-		def users = userDAO.selectAllUsers()
+			def users = userDAO.selectAllUsers()
 		
 		then:
-		users.size == 3
+			users.size == 3
 	}
 	
 	def "test select 2" () {
@@ -52,7 +52,7 @@ class UserDaoUsingJavaConfigTest extends Specification  {
 		setup:
 		
 		expect:
-		userDAO.selectAllUsers().size == 3
+			userDAO.selectAllUsers().size == 3
 	}
 	
 }
