@@ -10,6 +10,8 @@ This project serves the goal of a quick introduction to some old and and new fea
   * Spring XML and annotation hybrid or
   * Spring Java configuration without a single line of XML
   
+  * Spring profile
+  
 * Data access
   * Spring JDBC support (simple but elegant)
  
@@ -18,6 +20,7 @@ This project serves the goal of a quick introduction to some old and and new fea
   
 * Unit test
   * Spring test context
+  * Enbeded HSQL database
   * Spock (what a fun!)
 
 
