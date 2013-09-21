@@ -8,7 +8,7 @@ This project serves the goal of a quick introduction to some old and and new fea
   
 * Configuration
   * Spring XML and annotation hybrid or
-  * Spring Java configuration without a single line of XML
+  * Spring Java-based configuration without XML
   
   * Spring profile
   

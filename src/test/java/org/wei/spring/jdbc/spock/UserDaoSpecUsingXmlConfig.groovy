@@ -1,10 +1,5 @@
 package org.wei.spring.jdbc.spock
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.List;
-
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ActiveProfiles;
@@ -23,12 +18,8 @@ class UserDaoSpecUsingXmlConfig extends Specification  {
 	@Autowired
 	@Qualifier("userDao")
 	private IUserDao userDAO;
-
-	@Autowired
-	private PlatformTransactionManager txManager;
 	
-	def "test select" () {
-		
+	def "test select" () {		
 		setup:
 		
 		when:
