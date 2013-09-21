@@ -4,6 +4,8 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -14,6 +16,8 @@ import org.wei.spring.jdbc.service.IUserService;
 
 @Component
 public class MainWithXmlConfig {
+	
+	private static Logger logger = LoggerFactory.getLogger(MainWithXmlConfig.class);
 
 	@Autowired
 	@Qualifier("userService")
@@ -25,7 +29,7 @@ public class MainWithXmlConfig {
 
 	public void doSomething() {
 		User user = userDao.selectUserByPin(102);
-		System.out.println("User Name=" + user.getName());
+		logger.info("User Name=" + user.getName());
 	}
 
 	public static void main(String[] args) throws SQLException {
@@ -34,7 +38,7 @@ public class MainWithXmlConfig {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 	
 		DataSource ds = (DataSource) context.getBean("dataSource");
-		System.out.println(ds.getLoginTimeout());
+		logger.info("{}", ds.getLoginTimeout());
 		
 		MainWithXmlConfig thisMain = (MainWithXmlConfig) context.getBean(MainWithXmlConfig.class);
 		thisMain.doSomething();
@@ -42,7 +46,7 @@ public class MainWithXmlConfig {
 		
 		IUserDao userDao = (IUserDao) context.getBean("userDao");
 		User user = userDao.selectUserByPin(102);
-		System.out.println("User Name=" + user.getName());
+		logger.info("User Name=" + user.getName());
 
 		context.close();
 	}
