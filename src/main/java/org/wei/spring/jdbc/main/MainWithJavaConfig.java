@@ -61,6 +61,8 @@ public class MainWithJavaConfig {
 		User user = userDao.selectUserByPin(102);
 		logger.info("User Name=" + user.getName());
 
+		user = (User)context.getBean("user");
+		logger.info("User configured in java configuraton: " + user.getName());
 		context.close();
 	}
 

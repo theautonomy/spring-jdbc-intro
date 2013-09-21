@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -21,7 +22,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 //@ComponentScan(basePackages={"org.wei.spring.jdbc","org.wei.spring.jdbc.service"})
 @ComponentScan(basePackages={"org.wei.spring"})
 @PropertySource("classpath:conf/db-setting.conf")
-//@Import("AnotherAppConfig.class")
+@Import(AnotherAppConfiguration.class)
 //@ImportResource("classpath:myconfig.xml")
 @Profile("dev")
 public class AppConfiguration {
