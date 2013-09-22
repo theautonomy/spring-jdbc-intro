@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 import org.wei.spring.jdbc.configuration.AppConfiguration;
-import org.wei.spring.jdbc.configuration.UserFactoryBean;
 import org.wei.spring.jdbc.dao.IUserDao;
 import org.wei.spring.jdbc.domain.User;
 import org.wei.spring.jdbc.service.IUserService;
@@ -34,7 +33,7 @@ public class MainWithJavaConfig {
 		logger.info("User Name=" + user.getName());
 	}
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws SQLException {
 		System.setProperty("spring.profiles.active", "dev");
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfiguration.class);
 		// context.getEnvironment().setActiveProfiles("dev");
@@ -61,39 +60,9 @@ public class MainWithJavaConfig {
 		IUserDao userDao = (IUserDao) context.getBean("userDao");
 		User user = userDao.selectUserByPin(102);
 		logger.info("User Name=" + user.getName());
-		
-		logger.info("--> TEST STEP 1");
-		UserFactoryBean factory = (UserFactoryBean)context.getBean("&userFactory");
-		user = factory.getObject();
-		logger.info("User configured in java configuraton: " + user.getName());
-		logger.info("User=" + user);
 
-		logger.info("--> TEST STEP 2");
-		user = (User)context.getBean("myUser");
+		user = (User)context.getBean("user");
 		logger.info("User configured in java configuraton: " + user.getName());
-		logger.info("User=" + user);
-		
-		logger.info("--> TEST STEP 3");
-		user = (User)context.getBean("userFactory");
-		logger.info("User configured in java configuraton: " + user.getName());
-		logger.info("User=" + user);
-		
-		logger.info("--> TEST STEP 4");
-		factory = (UserFactoryBean)context.getBean("&userFactory");
-		user = factory.getObject();
-		logger.info("User configured in java configuraton: " + user.getName());
-		logger.info("User=" + user);
-		
-		logger.info("--> TEST STEP 5");
-		user = (User)context.getBean("myUser");
-		logger.info("User configured in java configuraton: " + user.getName());
-		logger.info("User=" + user);
-		
-		logger.info("--> TEST STEP 6");
-		user = (User)context.getBean("userFactory");
-		logger.info("User configured in java configuraton: " + user.getName());
-		logger.info("User=" + user);
-		
 		context.close();
 	}
 
