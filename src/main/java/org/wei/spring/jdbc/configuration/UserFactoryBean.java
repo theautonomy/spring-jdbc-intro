@@ -38,5 +38,6 @@ public class UserFactoryBean implements FactoryBean<User>, InitializingBean {
 	public boolean isSingleton() {
 		return true;
 	}
+	
 
 }
