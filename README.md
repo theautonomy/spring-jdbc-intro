@@ -1,7 +1,7 @@
 Introduction
 =================
 
-This project serves the goal of a quick introduction to some old and and new features of Spring framework. The topics covered in this projects include:
+This project serves the goal of a quick introduction to some old and new features of Spring framework. The topics covered in this project includes:
 * Project setup and layout
   * Maven or
   * Gradle (to be added)
@@ -20,7 +20,7 @@ This project serves the goal of a quick introduction to some old and and new fea
   
 * Unit test
   * Spring test context
-  * Enbeded HSQL database
+  * Embedded HSQL database
   * Spock (what a fun!)
 
 
@@ -28,4 +28,4 @@ This project serves the goal of a quick introduction to some old and and new fea
 Todo
 =======
 * Add declarative cache
-* Add gradle build
+* Add Gradle build
