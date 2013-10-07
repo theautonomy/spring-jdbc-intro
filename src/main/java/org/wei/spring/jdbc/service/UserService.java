@@ -20,6 +20,8 @@ public class UserService implements IUserService {
 	}
 
 	@Transactional
+	// Optionally, you can pass a value to @Transactional annotation. 
+	// Spring looks for any bean declared in the context with the name “transactionManager”.
 	public void updateUsersFailed(int i) {
 		userDAO.updateUserName(102, "New User 2 new");
 

@@ -21,8 +21,7 @@ This project serves the goal of a quick introduction to some old and new feature
 * Unit test
   * Spring test context
   * Embedded HSQL database
-  * Spock (what a fun!)
-
+  * Spock
 
 
 Todo
