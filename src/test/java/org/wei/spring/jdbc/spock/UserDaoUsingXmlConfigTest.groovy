@@ -13,7 +13,7 @@ import spock.lang.Specification
 
 @ContextConfiguration(locations="classpath:applicationContext.xml")
 @ActiveProfiles("dev")
-class UserDaoSpecUsingXmlConfig extends Specification  {
+class UserDaoUsingXmlConfigTest extends Specification  {
 	
 	@Autowired
 	@Qualifier("userDao")

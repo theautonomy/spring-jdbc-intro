@@ -17,7 +17,7 @@ import spock.lang.Specification;
 	        AppConfiguration.class   
 	    ])
 @ActiveProfiles("dev")
-class UserDaoUsingJavaConfigSpec extends Specification  {
+class UserDaoUsingJavaConfigTest extends Specification  {
 	
 	@Autowired
 	@Qualifier("userDao")
