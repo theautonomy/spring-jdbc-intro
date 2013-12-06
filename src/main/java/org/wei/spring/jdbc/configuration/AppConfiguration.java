@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
@@ -19,8 +20,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
+@EnableAspectJAutoProxy
 //@ComponentScan(basePackages={"org.wei.spring.jdbc","org.wei.spring.jdbc.service"})
-@ComponentScan(basePackages={"org.wei.spring"})
+@ComponentScan(basePackages={"org.wei.spring.jdbc"})
 @PropertySource("classpath:conf/db-setting.conf")
 @Import(AnotherAppConfiguration.class)
 //@ImportResource("classpath:myconfig.xml")

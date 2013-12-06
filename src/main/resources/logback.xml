@@ -16,7 +16,7 @@
     </encoder>
   </appender>
   
-  <logger name="org.wei" level="info">
+  <logger name="org" level="info">
     <appender-ref ref="STDOUT" />
   </logger>
   

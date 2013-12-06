@@ -16,24 +16,35 @@ public class LoggingAspect {
 	
 	private static Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
 	
-	@Before("execution(* org.wei.spring.jdbc.*..*Service+.*(..)) && target(service)")
+	
+	@Before("execution(* org.wei.spring.jdbc.*..*Service +.*(..)) && target(service)")
 	public void logBeforeEnter( JoinPoint joinPoint, Object service) {
 		logger.info("Enter: class - {} method - {} ", service.getClass().getSimpleName(), joinPoint.getSignature().getName());
 	}
 	
-	@After("execution(* org.wei.spring.jdbc.*..*Service+.*(..)) && target(service)")
+	@After("execution(* org.wei.spring.jdbc.*..*Service +.*(..)) && target(service)")
 	public void logAfterEnter(Object service) {
 		logger.info("Exit:  {}", service.getClass().getSimpleName());
 	}
 	
+	/* This works with xml configuratio but not java configuration */
+	/*
+	@After("execution(* org.wei.spring.jdbc.*..* +.*(..)) && target(service)")
+	public void logAfterEnter(Object service) {
+		logger.info("Exit:  {}", service.getClass().getSimpleName());
+	}
+	*/
+	
+	
+	
 	@Around("execution(* org.wei.spring.jdbc.*..*Service+.*(..)) && target(service)")
-	public Object logServiceAccess(ProceedingJoinPoint jp, Object service) throws Throwable {
+	public Object logServiceAccess(ProceedingJoinPoint joinPoint, Object service) throws Throwable {
 		long startTime = System.currentTimeMillis();
-		Object result = jp.proceed();
+		Object result = joinPoint.proceed();
 		long totalTime = System.currentTimeMillis() - startTime;
-		logger.info("{} {}: invocation time {} ms ", service.getClass().getSimpleName(), jp.getSignature().getName(), totalTime);
-		
+		logger.info("{} {}: invocation time {} ms ", service.getClass().getSimpleName(), joinPoint.getSignature().getName(), totalTime);
 		return result;
 	}
+	
 	
 }

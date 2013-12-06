@@ -31,6 +31,8 @@ public class MainWithJavaConfig {
 	public void doSomething() {
 		User user = userDao.selectUserByPin(102);
 		logger.info("User Name=" + user.getName());
+		
+		userService.updateUsers();
 	}
 
 	public static void main(String[] args) throws SQLException {
