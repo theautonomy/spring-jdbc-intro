@@ -2,8 +2,6 @@ package org.wei.spring.jdbc.main;
 
 import java.sql.SQLException;
 
-import javax.sql.DataSource;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,13 +33,10 @@ public class MainWithXmlConfig {
 	}
 
 	public static void main(String[] args) throws SQLException {
-		System.setProperty("spring.profiles.active", "dev");
+		System.setProperty("spring.profiles.active", "dev,aspect");
 		//System.setProperty("spring.profiles.active", "production");
 		
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-	
-		DataSource ds = (DataSource) context.getBean("dataSource");
-		logger.info("{}", ds.getLoginTimeout());
 		
 		MainWithXmlConfig thisMain = (MainWithXmlConfig) context.getBean(MainWithXmlConfig.class);
 		thisMain.doSomething();

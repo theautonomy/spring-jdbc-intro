@@ -2,8 +2,6 @@ package org.wei.spring.jdbc.main;
 
 import java.sql.SQLException;
 
-import javax.sql.DataSource;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,21 +36,17 @@ public class MainWithJavaConfig {
 
 	public static void main(String[] args) throws SQLException {
 		//System.setProperty("spring.profiles.active", "dev");
-		System.setProperty("spring.profiles.active", "production");
+		System.setProperty("spring.profiles.active", "production,aspect");
 		
 		String activeProfile = System.getProperty("spring.profiles.active");
 		
 		AnnotationConfigApplicationContext context = null;
 		
-		if (activeProfile.equalsIgnoreCase("dev")) {
+		if (activeProfile.matches(".*dev.*")) {
 			context = new AnnotationConfigApplicationContext(DevAppConfiguration.class);
-		} else if (activeProfile.equalsIgnoreCase("production")) {
+		} else if (activeProfile.matches(".*production.*")) {
 			context = new AnnotationConfigApplicationContext(ProductionAppConfiguration.class);
 		}
-
-		DataSource ds = (DataSource) context.getBean("dataSource");
-		logger.info("{}", ds.getLoginTimeout());
-		logger.info("logging");
 		
 		MainWithJavaConfig thisMain = (MainWithJavaConfig) context.getBean("main");
 		thisMain.doSomething();
@@ -63,6 +57,7 @@ public class MainWithJavaConfig {
 
 		user = (User)context.getBean("user");
 		logger.info("User configured in java configuraton: " + user.getName());
+		
 		context.close();
 	}
 
