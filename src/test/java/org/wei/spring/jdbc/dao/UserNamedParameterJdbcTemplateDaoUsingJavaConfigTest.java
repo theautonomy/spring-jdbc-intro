@@ -1,6 +1,6 @@
 package org.wei.spring.jdbc.dao;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
@@ -12,15 +12,15 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
-import org.wei.spring.jdbc.configuration.AppConfiguration;
-import org.wei.spring.jdbc.dao.IUserDao;
+import org.wei.spring.jdbc.configuration.DevAppConfiguration;
 import org.wei.spring.jdbc.domain.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
 	    loader=AnnotationConfigContextLoader.class,
 	    classes={
-	        AppConfiguration.class /*,
+	        DevAppConfiguration.class 
+	        /*,
 	        OtherConfig.class,
 	        JndiDataConfig.class */
 	        

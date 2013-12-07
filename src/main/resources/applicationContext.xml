@@ -36,15 +36,15 @@
 
 	<beans profile="dev">
 		<jdbc:embedded-database id="dataSource">
-			<jdbc:script location="classpath:sql/hsqldb/schema.sql" />
-			<jdbc:script location="classpath:sql/hsqldb/data.sql" />
+			<jdbc:script location="classpath:sql/hsqldb/dev/schema.sql" />
+			<jdbc:script location="classpath:sql/hsqldb/dev/data.sql" />
 		</jdbc:embedded-database>
 	</beans>
 
 	<beans profile="production">
 		<jdbc:embedded-database id="dataSource">
-			<jdbc:script location="classpath:schema.sql" />
-			<jdbc:script location="classpath:data.sql" />
+				<jdbc:script location="classpath:sql/hsqldb/production/schema.sql" />
+			<jdbc:script location="classpath:sql/hsqldb/production/data.sql" />
 		</jdbc:embedded-database>
 	</beans>
 

@@ -36,6 +36,7 @@ public class MainWithXmlConfig {
 
 	public static void main(String[] args) throws SQLException {
 		System.setProperty("spring.profiles.active", "dev");
+		//System.setProperty("spring.profiles.active", "production");
 		
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 	
@@ -44,7 +45,6 @@ public class MainWithXmlConfig {
 		
 		MainWithXmlConfig thisMain = (MainWithXmlConfig) context.getBean(MainWithXmlConfig.class);
 		thisMain.doSomething();
-
 		
 		IUserDao userDao = (IUserDao) context.getBean("userDao");
 		User user = userDao.selectUserByPin(102);

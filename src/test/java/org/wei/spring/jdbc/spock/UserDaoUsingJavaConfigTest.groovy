@@ -1,20 +1,19 @@
 package org.wei.spring.jdbc.spock
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Qualifier
+import org.springframework.test.context.ActiveProfiles
+import org.springframework.test.context.ContextConfiguration
+import org.springframework.test.context.support.AnnotationConfigContextLoader
+import org.wei.spring.jdbc.configuration.DevAppConfiguration
+import org.wei.spring.jdbc.dao.IUserDao
 
-import org.wei.spring.jdbc.configuration.AppConfiguration;
-import org.wei.spring.jdbc.dao.IUserDao;
-
-import spock.lang.Specification;
+import spock.lang.Specification
 
 @ContextConfiguration(
 	    loader=AnnotationConfigContextLoader.class,
 	    classes=[
-	        AppConfiguration.class   
+	        DevAppConfiguration.class
 	    ])
 @ActiveProfiles("dev")
 class UserDaoUsingJavaConfigTest extends Specification  {

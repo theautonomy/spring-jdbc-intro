@@ -10,7 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
-import org.wei.spring.jdbc.configuration.AppConfiguration;
+import org.wei.spring.jdbc.configuration.DevAppConfiguration;
+import org.wei.spring.jdbc.configuration.ProductionAppConfiguration;
 import org.wei.spring.jdbc.dao.IUserDao;
 import org.wei.spring.jdbc.domain.User;
 import org.wei.spring.jdbc.service.IUserService;
@@ -36,20 +37,18 @@ public class MainWithJavaConfig {
 	}
 
 	public static void main(String[] args) throws SQLException {
-		System.setProperty("spring.profiles.active", "dev");
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfiguration.class);
-		// context.getEnvironment().setActiveProfiles("dev");
-	
-		// Second option to load context. The key is to set the profile correctly
-		// AnnotationConfigApplicationContext context = new
-		// AnnotationConfigApplicationContext();
-		//
-		// System.setProperty("spring.profiles.active", "dev");  or
-		// context.getEnvironment().setActiveProfiles("dev");
-		//
-		// context.scan("org.wei.spring");
-		// context.register(AppConfiguration.class);
-		// context.refresh();
+		//System.setProperty("spring.profiles.active", "dev");
+		System.setProperty("spring.profiles.active", "production");
+		
+		String activeProfile = System.getProperty("spring.profiles.active");
+		
+		AnnotationConfigApplicationContext context = null;
+		
+		if (activeProfile.equalsIgnoreCase("dev")) {
+			context = new AnnotationConfigApplicationContext(DevAppConfiguration.class);
+		} else if (activeProfile.equalsIgnoreCase("production")) {
+			context = new AnnotationConfigApplicationContext(ProductionAppConfiguration.class);
+		}
 
 		DataSource ds = (DataSource) context.getBean("dataSource");
 		logger.info("{}", ds.getLoginTimeout());
@@ -58,7 +57,6 @@ public class MainWithJavaConfig {
 		MainWithJavaConfig thisMain = (MainWithJavaConfig) context.getBean("main");
 		thisMain.doSomething();
 
-		
 		IUserDao userDao = (IUserDao) context.getBean("userDao");
 		User user = userDao.selectUserByPin(102);
 		logger.info("User Name=" + user.getName());
