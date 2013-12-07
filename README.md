@@ -18,6 +18,9 @@ This project serves the goal of a quick introduction to some old and new feature
 * Transaction management
   * Spring supported declarative transaction management through annotation
   
+* AOP
+  * Simple logging and timing aspects using AspectJ based AOP through Spring
+  
 * Unit test
   * Spring test context
   * Embedded HSQL database
