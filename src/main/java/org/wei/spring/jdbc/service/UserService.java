@@ -1,5 +1,7 @@
 package org.wei.spring.jdbc.service;
 
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,12 @@ public class UserService implements IUserService {
 	@Transactional
 	public void updateUsers() {
 		userDAO.updateUserName(102, "New User 2");
+		// Wait some time for aop demonstration purpose
+		try {
+			Thread.sleep(new Random().nextInt(3) * 1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		userDAO.updateUserName(101, "New User 1");
 	}
 
