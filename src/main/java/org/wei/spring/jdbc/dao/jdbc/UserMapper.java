@@ -9,7 +9,7 @@ import org.wei.spring.jdbc.domain.User;
 public class UserMapper implements RowMapper<User> {
 	public User mapRow(ResultSet rs, int rowNum) throws SQLException {
 		User user = new User();
-		user.setId(rs.getString("id"));
+		user.setId(rs.getLong("id"));
 		user.setName(rs.getString("name"));
 		user.setAddress(rs.getString("address"));
 		user.setCity(rs.getString("city"));

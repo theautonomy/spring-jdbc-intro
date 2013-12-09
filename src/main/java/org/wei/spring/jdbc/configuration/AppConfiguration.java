@@ -12,6 +12,8 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.transaction.PlatformTransactionManager;
 
+//@ComponentScan(basePackages={"org.wei.spring.jdbc.aspect, org.wei.spring.jdbc.dao, org.wei.spring.jdbc.dao.jdbc, org.wei.spring.jdbc.main, org.wei.spring.jdbc.service"})
+//@ComponentScan(basePackages={"org.wei.spring.jdbc"}, excludeFilters = @ComponentScan.Filter(type=FilterType.CUSTOM, value=RegexPatternTypeFilter.class))
 @ComponentScan(basePackages={"org.wei.spring.jdbc"})
 @Import(AnotherAppConfiguration.class)
 public abstract class AppConfiguration {
@@ -21,7 +23,8 @@ public abstract class AppConfiguration {
 	
 	@Bean(name="dataSource")
 	public DataSource dataSource() {
-		return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.HSQL)
+		return new EmbeddedDatabaseBuilder()
+				.setType(EmbeddedDatabaseType.HSQL)
 				.addScript(environment.getProperty("schema"))
 				.addScript(environment.getProperty("data"))
 				.build();			
