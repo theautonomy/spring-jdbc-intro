@@ -13,37 +13,35 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.wei.spring.jdbc.dao.springjpa.UserSpringJpaDao;
 
-/*
+
 @Configuration
 @EnableTransactionManagement
 @EnableAspectJAutoProxy
 @EnableJpaRepositories(basePackages = { "org.wei.spring.jdbc" })
 @PropertySource("classpath:conf/dev/db-setting.conf")
-@Profile("dev")
-*/
+@Profile("devJpa")
 public class DevAppConfigurationUsingSpringJpa extends AppConfiguration {
 
-	/*
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-		LocalContainerEntityManagerFactoryBean lcemfb = new LocalContainerEntityManagerFactoryBean();
+		LocalContainerEntityManagerFactoryBean emfb = new LocalContainerEntityManagerFactoryBean();
 
-		lcemfb.setDataSource(this.dataSource());
-		lcemfb.setPackagesToScan(new String[] { "org.wei.spring.jdbc" });
-		lcemfb.setPersistenceUnitName("MyPU");
+		emfb.setDataSource(this.dataSource());
+		emfb.setPackagesToScan(new String[] { "org.wei.spring.jdbc" });
+		emfb.setPersistenceUnitName("MyPU");
 
 		HibernateJpaVendorAdapter va = new HibernateJpaVendorAdapter();
-		lcemfb.setJpaVendorAdapter(va);
+		emfb.setJpaVendorAdapter(va);
 
 		Properties ps = new Properties();
 		ps.put("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
-		// ps.put("hibernate.hbm2ddl.auto", "create");
-		lcemfb.setJpaProperties(ps);
+		emfb.setJpaProperties(ps);
 
-		lcemfb.afterPropertiesSet();
+		emfb.afterPropertiesSet();
 
-		return lcemfb;
+		return emfb;
 
 	}
 
@@ -53,6 +51,10 @@ public class DevAppConfigurationUsingSpringJpa extends AppConfiguration {
 		tm.setEntityManagerFactory(this.entityManagerFactory().getObject());
 		return tm;
 	}
-	*/
+	
+	@Bean(name="userSpringJpaDao")
+	public UserSpringJpaDao userSpringJpaDao() {
+		return new UserSpringJpaDao();
+	}
 
 }
