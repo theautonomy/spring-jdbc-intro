@@ -15,7 +15,6 @@
 		<aspectjweaver.version>1.6.8</aspectjweaver.version>
 	</properties>
 	
-	
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -102,11 +101,13 @@
 			<scope>test</scope>
 		</dependency>
 
+        <!--
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
 			<version>1.7.5</version>
 		</dependency>
+		-->
 
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
