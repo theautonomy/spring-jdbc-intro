@@ -20,10 +20,6 @@ import org.wei.spring.jdbc.domain.User;
 	    loader=AnnotationConfigContextLoader.class,
 	    classes={
 	        DevAppConfiguration.class 
-	        /*,
-	        OtherConfig.class,
-	        JndiDataConfig.class */
-	        
 	    })
 @ActiveProfiles("dev")
 public class UserNamedParameterJdbcTemplateDaoUsingJavaConfigTest {
@@ -58,6 +54,39 @@ public class UserNamedParameterJdbcTemplateDaoUsingJavaConfigTest {
 		
 		User user = userDAO.selectUserByPin(102);
 		assertEquals("New User",  user.getName());
+	}
+	
+	@Test
+	public void testInsertUser() {
+		int count = userDAO.getCount();
+		assertEquals(3, count);
+		
+		User user = new User();
+		user.setName("Add a new user");
+		user.setPin(110);
+		userDAO.insertUser(user);
+		
+		count = userDAO.getCount();
+		assertEquals(4, count);
+		
+		printUsers();
+		
+		user = userDAO.selectUserByPin(user.getPin());
+	
+		userDAO.deleteUser(user.getId());
+		
+		printUsers();
+	}
+	
+	private void printUsers() {
+		List<User> users = userDAO.selectAllUsers();
+		for(User thisUser : users) {
+			printUser(thisUser);
+		}
+	}
+	
+	private void printUser(User user) {
+		System.out.println(user);
 	}
 	
 }

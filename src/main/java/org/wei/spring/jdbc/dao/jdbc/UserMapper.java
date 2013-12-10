@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.wei.spring.jdbc.domain.User;
 
 public class UserMapper implements RowMapper<User> {
+	
 	public User mapRow(ResultSet rs, int rowNum) throws SQLException {
 		User user = new User();
 		user.setId(rs.getLong("id"));
@@ -17,4 +18,5 @@ public class UserMapper implements RowMapper<User> {
 		user.setPin(rs.getInt("pin"));
 		return user;
 	}
+	
 }

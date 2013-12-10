@@ -19,9 +19,6 @@ import org.wei.spring.jdbc.domain.User;
 	    loader=AnnotationConfigContextLoader.class,
 	    classes={
 	        DevAppConfiguration.class 
-	        /*,
-	        OtherConfig.class,
-	        JndiDataConfig.class */	        
 	    })
 @ActiveProfiles("dev")
 public class UserServiceUsingJavaConfigTest {

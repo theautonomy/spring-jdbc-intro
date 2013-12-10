@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table( name = "USER" )
+@Table(name = "USER")
 public class User {
 
 	@Id
@@ -66,6 +66,11 @@ public class User {
 
 	public void setPin(int pin) {
 		this.pin = pin;
+	}
+	
+	@Override
+	public String toString() {
+		return "id: " + id + " " + "name: " + name + " " + "pin: " + pin;
 	}
 
 }

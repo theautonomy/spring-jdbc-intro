@@ -35,11 +35,8 @@ public class UserNamedParameterJdbcTemplateDao implements IUserDao {
 	}
 
 	public User selectUserByPin(int pin) {
-	
 		Map<String, Integer> namedParameters = Collections.singletonMap("pin", pin);
 		return jdbcTemplate.queryForObject("select * from user where pin =  :pin", namedParameters, new UserMapper());
-
-		
 	}
 
 	public int updateUserName(int pin, String name) {
@@ -52,6 +49,19 @@ public class UserNamedParameterJdbcTemplateDao implements IUserDao {
 		user.setName(name);
 		SqlParameterSource namedParameters = new BeanPropertySqlParameterSource(user);
 		return jdbcTemplate.update("update user set name= :name where pin = :pin", namedParameters);
+	}
+
+	@Override
+	public User insertUser(User user) {
+		SqlParameterSource namedParameters = new BeanPropertySqlParameterSource(user);
+		jdbcTemplate.update("insert into user (name, address, city, state, pin) values (:name, :address, :city, :state, :pin)", namedParameters);
+		return user;
+	}
+
+	@Override
+	public void deleteUser(Long id) {
+		Map<String, Long> namedParameters = Collections.singletonMap("id", id);
+		jdbcTemplate.update("delete from user where id = :id", namedParameters);
 	}
 
 }

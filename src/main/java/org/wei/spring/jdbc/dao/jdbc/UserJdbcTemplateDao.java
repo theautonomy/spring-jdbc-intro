@@ -45,4 +45,16 @@ public class UserJdbcTemplateDao implements IUserDao {
 				name, Integer.valueOf(pin));
 	}
 
+	@Override
+	public User insertUser(User user) {
+		jdbcTemplate.update("insert into user (name, address, city, state, pin) values (?, ?, ?, ?, ?)", 
+				new Object [] {user.getName(), user.getAddress(), user.getCity(), user.getState(), user.getPin()});
+		return user;
+	}
+
+	@Override
+	public void deleteUser(Long id) {
+		jdbcTemplate.update("delete from user where id = ?", id);
+	}
+
 }

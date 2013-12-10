@@ -3,6 +3,7 @@ package org.wei.spring.jdbc.dao.springjpa;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 //import org.springframework.stereotype.Repository;
 import org.wei.spring.jdbc.dao.IUserDao;
 import org.wei.spring.jdbc.domain.User;
@@ -27,8 +28,6 @@ public class UserSpringJpaDao implements IUserDao {
 	@Override
 	public User selectUserByPin(int pin) {
 		return userSpringJpaRepository.findByPin(pin);
-		
-		
 	}
 
 	@Override
@@ -40,7 +39,18 @@ public class UserSpringJpaDao implements IUserDao {
 		return 1;
 		*/
 		return userSpringJpaRepository.udpateUserByPin(name, pin);
-
 	}
 
+	@Override
+	@Transactional
+	public User insertUser(User user) {
+		return userSpringJpaRepository.saveAndFlush(user);
+	}
+
+	@Override
+	@Transactional
+	public void deleteUser(Long id) {
+		userSpringJpaRepository.delete(id);
+	}
+	
 }

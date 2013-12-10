@@ -20,5 +20,6 @@ public interface UserSpringJpaRepository extends JpaRepository<User, Long>  {
     @Transactional
     @Query("UPDATE User u set u.name = :name WHERE u.pin = :pin")
     public int udpateUserByPin(@Param("name") String name, @Param("pin") int pin);
+    
 }
 

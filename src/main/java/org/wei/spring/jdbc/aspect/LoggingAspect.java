@@ -16,7 +16,6 @@ public class LoggingAspect {
 	
 	private static Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
 	
-	
 	@Before("execution(* org.wei.spring.jdbc.*..*Service +.*(..)) && target(service)")
 	public void logBeforeEnter(JoinPoint joinPoint, Object service) {
 		logger.info("Enter: class {}, method {} ", service.getClass().getSimpleName(), joinPoint.getSignature().getName());

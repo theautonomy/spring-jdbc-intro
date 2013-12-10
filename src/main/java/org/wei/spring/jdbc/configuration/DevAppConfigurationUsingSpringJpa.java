@@ -15,7 +15,6 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.wei.spring.jdbc.dao.springjpa.UserSpringJpaDao;
 
-
 @Configuration
 @EnableTransactionManagement
 @EnableAspectJAutoProxy
@@ -32,24 +31,23 @@ public class DevAppConfigurationUsingSpringJpa extends AppConfiguration {
 		emfb.setPackagesToScan(new String[] { "org.wei.spring.jdbc" });
 		emfb.setPersistenceUnitName("MyPU");
 
-		HibernateJpaVendorAdapter va = new HibernateJpaVendorAdapter();
-		emfb.setJpaVendorAdapter(va);
+		HibernateJpaVendorAdapter hjva = new HibernateJpaVendorAdapter();
+		emfb.setJpaVendorAdapter(hjva);
 
-		Properties ps = new Properties();
-		ps.put("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
-		emfb.setJpaProperties(ps);
+		Properties p = new Properties();
+		p.put("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
+		emfb.setJpaProperties(p);
 
 		emfb.afterPropertiesSet();
 
 		return emfb;
-
 	}
 
 	@Bean
 	public PlatformTransactionManager transactionManager() {
-		JpaTransactionManager tm = new JpaTransactionManager();
-		tm.setEntityManagerFactory(this.entityManagerFactory().getObject());
-		return tm;
+		JpaTransactionManager jtm = new JpaTransactionManager();
+		jtm.setEntityManagerFactory(this.entityManagerFactory().getObject());
+		return jtm;
 	}
 	
 	@Bean(name="userSpringJpaDao")

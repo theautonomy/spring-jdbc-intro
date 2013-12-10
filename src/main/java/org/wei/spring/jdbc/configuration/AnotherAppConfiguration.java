@@ -14,4 +14,5 @@ public class AnotherAppConfiguration {
 		user.setPin(4321);
 		return user;
 	}
+	
 }
