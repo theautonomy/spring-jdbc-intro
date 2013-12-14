@@ -95,7 +95,7 @@ public class UserJdbcTemplateDaoTest {
 		
 		printUsers();
 		
-		user = userDAO.selectUserByPin(user.getPin());
+		//user = userDAO.selectUserByPin(user.getPin());
 	
 		userDAO.deleteUser(user.getId());
 		

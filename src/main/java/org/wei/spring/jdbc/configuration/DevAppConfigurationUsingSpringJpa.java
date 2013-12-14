@@ -18,7 +18,7 @@ import org.wei.spring.jdbc.dao.springjpa.UserSpringJpaDao;
 @Configuration
 @EnableTransactionManagement
 @EnableAspectJAutoProxy
-@EnableJpaRepositories(basePackages = { "org.wei.spring.jdbc" })
+@EnableJpaRepositories(basePackages = {"org.wei.spring.jdbc"})
 @PropertySource("classpath:conf/dev/db-setting.conf")
 @Profile("devJpa")
 public class DevAppConfigurationUsingSpringJpa extends AppConfiguration {

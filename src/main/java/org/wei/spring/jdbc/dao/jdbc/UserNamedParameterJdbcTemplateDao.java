@@ -27,41 +27,42 @@ public class UserNamedParameterJdbcTemplateDao implements IUserDao {
 	public int getCount() {
 		Map<String, ?> namedParameters = null;
 		return jdbcTemplate.queryForObject
-				("select count(*) from USER", namedParameters, Integer.class);
+				("SELECT COUNT(*) FROM USER", namedParameters, Integer.class);
 	}
 
 	public List<User> selectAllUsers() {
-		return jdbcTemplate.query("select * from USER order by pin", new UserMapper());
+		return jdbcTemplate.query("SELECT * FROM USER ORDER BY PIN", new UserMapper());
 	}
 
 	public User selectUserByPin(int pin) {
 		Map<String, Integer> namedParameters = Collections.singletonMap("pin", pin);
-		return jdbcTemplate.queryForObject("select * from user where pin =  :pin", namedParameters, new UserMapper());
+		return jdbcTemplate.queryForObject("SELECT * FROM USER WHERE PIN =  :pin", namedParameters, new UserMapper());
 	}
 
 	public int updateUserName(int pin, String name) {
 		/*
 		SqlParameterSource namedParameters = new MapSqlParameterSource("name", name).addValue("pin",  pin);
-		return jdbcTemplate.update("update user set name = :name where pin = :pin", namedParameters);
+		return jdbcTemplate.update("UPDATE USER SET NAME = :name WHERE PIN = :pin", namedParameters);
 		*/		
 		User user = new User();
 		user.setPin(102);
 		user.setName(name);
 		SqlParameterSource namedParameters = new BeanPropertySqlParameterSource(user);
-		return jdbcTemplate.update("update user set name= :name where pin = :pin", namedParameters);
+		return jdbcTemplate.update("UPDATE USER SET NAME= :name WHERE PIN = :pin", namedParameters);
 	}
 
 	@Override
 	public User insertUser(User user) {
 		SqlParameterSource namedParameters = new BeanPropertySqlParameterSource(user);
-		jdbcTemplate.update("insert into user (name, address, city, state, pin) values (:name, :address, :city, :state, :pin)", namedParameters);
+		jdbcTemplate.update("INSERT INTO USER (NAME, ADDRESS, CITY, STATE, PIN) " +
+				"VALUES (:name, :address, :city, :state, :pin)", namedParameters);
 		return user;
 	}
 
 	@Override
 	public void deleteUser(Long id) {
 		Map<String, Long> namedParameters = Collections.singletonMap("id", id);
-		jdbcTemplate.update("delete from user where id = :id", namedParameters);
+		jdbcTemplate.update("DELETE FROM USER WHERE ID = :id", namedParameters);
 	}
 
 }

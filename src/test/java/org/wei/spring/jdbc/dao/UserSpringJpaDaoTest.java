@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.wei.spring.jdbc.dao.springjpa.UserSpringJpaRepository;
 import org.wei.spring.jdbc.domain.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -21,6 +23,19 @@ public class UserSpringJpaDaoTest {
 	@Autowired
 	@Qualifier("userSpringJpaDao")
 	private IUserDao userDAO;
+	
+	
+	@Autowired
+	@Qualifier("userSpringJpaRepository")
+	private UserSpringJpaRepository userSpringJpaRepository;
+	
+	
+	@Test
+	//@Ignore
+	public void testFindByState() {
+		List<User> users = userSpringJpaRepository.findByState("IN");
+		assertEquals(2, users.size());
+	}
 
 	@Test
 	public void testSelectCount() {

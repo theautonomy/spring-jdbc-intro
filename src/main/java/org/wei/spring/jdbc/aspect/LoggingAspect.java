@@ -18,12 +18,14 @@ public class LoggingAspect {
 	
 	@Before("execution(* org.wei.spring.jdbc.*..*Service +.*(..)) && target(service)")
 	public void logBeforeEnter(JoinPoint joinPoint, Object service) {
-		logger.info("Enter: class {}, method {} ", service.getClass().getSimpleName(), joinPoint.getSignature().getName());
+		logger.info("Enter - class {}, method {}, and arguments passed in are {} ", service.getClass().getSimpleName(), 
+				joinPoint.getSignature().getName(), joinPoint.getArgs());
 	}
 	
 	@After("execution(* org.wei.spring.jdbc.*..*Service +.*(..)) && target(service)")
 	public void logAfterEnter(JoinPoint joinPoint, Object service) {
-		logger.info("Exit: class {}, method {} ", service.getClass().getSimpleName(), joinPoint.getSignature().getName());
+		logger.info("Exit - class {}, method {} ", service.getClass().getSimpleName(), 
+				joinPoint.getSignature().getName());
 	}
 	
 	/* This works with xml configuratio but not java configuration */

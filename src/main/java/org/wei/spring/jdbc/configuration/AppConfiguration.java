@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Scope;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
@@ -20,6 +21,7 @@ public abstract class AppConfiguration {
 	private Environment environment;
 	
 	@Bean(name="dataSource")
+	@Scope(value="singleton")
 	public DataSource dataSource() {
 		return new EmbeddedDatabaseBuilder()
 				.setType(EmbeddedDatabaseType.HSQL)
@@ -29,6 +31,7 @@ public abstract class AppConfiguration {
 	}
 	
 	@Bean
+	@Scope(value="singleton")
 	public PlatformTransactionManager transactionManager() {
 		DataSourceTransactionManager txManager = new DataSourceTransactionManager();
 		txManager.setDataSource(dataSource());

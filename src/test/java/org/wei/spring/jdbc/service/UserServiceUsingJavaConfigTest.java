@@ -33,25 +33,25 @@ public class UserServiceUsingJavaConfigTest {
 	
 	@Test
 	public void testUpdateUsers() {		
-		userService.updateUsers();
+		userService.updateUsers("dummy", 1);
 		User user = userDAO.selectUserByPin(102);
-		assertEquals("New User 2",  user.getName());		
+		assertEquals("New User2",  user.getName());		
 	}
 	
 	@Test
 	public void testUpdateUsersFailed() {
-		userService.updateUsers();
-		User user = userDAO.selectUserByPin(102);
-		assertEquals("New User 2",  user.getName());
 		
 		try {
 			userService.updateUsersFailed(103);
 		} catch  (Exception e) {
-			
+			e.printStackTrace();
 		}
 		
-		user = userDAO.selectUserByPin(102);
-		assertEquals("New User 2",  user.getName());
+		User user = userDAO.selectUserByPin(102);
+		assertEquals("User2 - DEV",  user.getName());
+		
+		user = userDAO.selectUserByPin(103);
+		assertEquals("User3 - DEV",  user.getName());
 	}
 
 }

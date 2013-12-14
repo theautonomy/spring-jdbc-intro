@@ -20,7 +20,7 @@ public class MonitoringAspect {
 		long startTime = System.currentTimeMillis();
 		Object result = joinPoint.proceed();
 		long totalTime = System.currentTimeMillis() - startTime;
-		logger.info("{} {}: invocation time is {} ms ", 
+		logger.info("{} {} invocation time is {} ms ", 
 				service.getClass().getSimpleName(), joinPoint.getSignature().getName(), totalTime);
 		return result;
 	}

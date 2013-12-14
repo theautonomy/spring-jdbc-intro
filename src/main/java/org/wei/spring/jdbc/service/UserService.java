@@ -16,27 +16,30 @@ public class UserService implements IUserService {
 	private IUserDao userDAO;
 
 	@Transactional
-	public void updateUsers() {
-		userDAO.updateUserName(102, "New User 2");
-		// Wait some time for aop demonstration purpose
+	public void updateUsers(String s1, int i1) {
+		userDAO.updateUserName(101, "New User1");
+		userDAO.updateUserName(102, "New User2");
+		
+		// Wait some time for AOP monitoring aspect demonstration purpose
 		try {
 			Thread.sleep(new Random().nextInt(3) * 1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		userDAO.updateUserName(101, "New User 1");
+	
 	}
 
 	@Transactional
 	// Optionally, you can pass a value to @Transactional annotation. 
 	// Spring looks for any bean declared in the context with the name “transactionManager”.
 	public void updateUsersFailed(int i) {
-		userDAO.updateUserName(102, "New User 2 new");
+		userDAO.updateUserName(102, "New User2");
 
 		if (i == 103) {
 			throw new RuntimeException("someting went wrong");
 		}
-		userDAO.updateUserName(101, "New User 1");
+		
+		userDAO.updateUserName(103, "New User3");
 	}
 
 }

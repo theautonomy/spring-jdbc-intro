@@ -30,12 +30,12 @@ public class MainWithJavaConfig {
 		User user = userDao.selectUserByPin(102);
 		logger.info("User Name=" + user.getName());
 		
-		userService.updateUsers();
+		userService.updateUsers("dummy", 1);
+		
+		userService.updateUsersFailed(1);
 	}
 
 	public static void main(String[] args) throws SQLException {
-		//System.setProperty("spring.profiles.active", "dev,  aspect  ");
-		System.setProperty("spring.profiles.active", "production,aspect");
 		
 		String activeProfile = System.getProperty("spring.profiles.active");
 		
