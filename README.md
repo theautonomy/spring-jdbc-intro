@@ -27,8 +27,3 @@ This project serves the goal of a quick introduction to some old and new feature
   * Spock
 
 
-Todo
-=======
-* Add declarative cache
-* Add Gradle build
-
